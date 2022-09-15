@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{BF01E99D-7657-4DCA-A7FF-86E7DCE342D0}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="win-service\win_service.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="win-vcl\win_vcl.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="win-console\win_console.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="win_service">
+        <MSBuild Projects="win-service\win_service.dproj"/>
+    </Target>
+    <Target Name="win_service:Clean">
+        <MSBuild Projects="win-service\win_service.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="win_service:Make">
+        <MSBuild Projects="win-service\win_service.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="win_vcl">
+        <MSBuild Projects="win-vcl\win_vcl.dproj"/>
+    </Target>
+    <Target Name="win_vcl:Clean">
+        <MSBuild Projects="win-vcl\win_vcl.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="win_vcl:Make">
+        <MSBuild Projects="win-vcl\win_vcl.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="win_console">
+        <MSBuild Projects="win-console\win_console.dproj"/>
+    </Target>
+    <Target Name="win_console:Clean">
+        <MSBuild Projects="win-console\win_console.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="win_console:Make">
+        <MSBuild Projects="win-console\win_console.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="win_service;win_vcl;win_console"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="win_service:Clean;win_vcl:Clean;win_console:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="win_service:Make;win_vcl:Make;win_console:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
